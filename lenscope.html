@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+	<body>
+		<form id="grau">
+			<h2>Grau Esférico</h2>
+				<label>Olho Esquerdo</label>
+				<p>
+					<input id="esfesq" type="number" min="-15" max="0" step="0.25" placeholder="0">
+				</p>
+
+				<label>Olho Direito</label>
+				<p>
+					<input id="esfdir" type="number" min="-15" max="0" step="0.25" placeholder="0">
+				</p>
+
+			<h2>Grau Cilíndrico</h2>
+
+				<label>Olho Esquerdo</label>
+				<p>
+					<input id="cilesq" type="number" min="-6" max="0" step="0.25" placeholder="0">
+				</p>
+
+				<label>Olho Direito</label>
+				<p>
+					<input id="cildir" type="number" min="-6" max="0" step="0.25" placeholder="0">
+				</p>
+
+			<p>
+			<input type="submit" value="Pesquisar">
+			</p>
+		</form>
+		
+		<p id="resultado"></p>
+
+		<script>
+			var form = document.getElementById("grau");
+			
+			var resultado = document.getElementById("resultado");
+
+			var primedisp = 1;
+			
+			form.onsubmit = function(e) {
+				e.preventDefault();
+				if (primedisp == 1) {
+					if (form.cilesq.value == 0 || form.cildir.value == 0){
+						if (form.esfesq.value <= -3 && form.esfesq.value >= -12 && form.esfdir.value <= -3 && form.esfdir.value >= -12) {
+							resultado.innerHTML = 'Lentes Prime';
+						} else {
+							resultado.innerHTML = 'Lentes Vision';
+						}
+					} else {
+						if (form.cilesq.value >= -2 && form.cildir.value >= -2 && form.esfesq.value <= -3 && form.esfesq.value >= -10 && form.esfdir.value <= -3 && form.esfdir.value >= -10) {
+							resultado.innerHTML = 'Lentes Prime';
+						} else if (form.cilesq.value < -2 && form.cildir.value < -2 && form.cilesq.value >= -5 && form.cildir.value >= -5){
+							resultado.innerHTML = 'Lentes Vision';
+						} else {
+							resultado.innerHTML = 'Nenhuma lente encontrada :(';
+						}
+					}
+				} else {
+					if (form.esfesq.value >= -15 && form.esfdir.value >= -15 && form.cilesq.value >= -5 && form.cildir.value >= -5) {
+						resultado.innerHTML = 'Lentes Vision';
+					} else {
+						resultado.innerHTML = 'Nenhuma lente encontrada :(';
+					}
+				}
+			};
+		</script>
+	</body>
+</html>
